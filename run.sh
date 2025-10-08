@@ -33,7 +33,7 @@ volumes=(-v "$DIR_PATH":/data)
 [[ -f "$BASHINIT_FILE" ]] && volumes+=(-v "$BASHINIT_FILE:/root/.bash_init")
 
 # launch container
-podman run -it --rm \
+podman --root "/tmp/script-podman-images-$(id -u)" run -it --rm \
     --init \
     -e "TZ=$(timedatectl show --property=Timezone --value)" \
     --detach-keys="" \
